@@ -6,7 +6,7 @@ const ListData = ({ navigate }) => {
   return (
     <View style={styles.container}>
       <View style={styles.bigbox}>
-        <Text style={styles.bigtitle}>Coinz</Text>
+        <Text style={styles.bigtitle}>Select coin to convert</Text>
       </View>
 
       <CoinScreen
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   bigbox: {
     paddingHorizontal: 16,
+    alignSelf: "center",
   },
 });
 
