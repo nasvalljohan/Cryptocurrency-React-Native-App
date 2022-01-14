@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import Boxes from "./Boxes";
 import { SAMPLE_DATA } from "./APIDATA";
 
