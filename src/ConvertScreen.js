@@ -7,8 +7,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { CoinFormation } from "../App";
-import { useContext } from "react";
 
 const ConvertScreen = ({ navigation }) => {
   return (

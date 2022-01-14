@@ -7,10 +7,8 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { CoinFormation } from "../App";
-import { useContext } from "react";
 
-const SplashScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>SplashSCreeeen</Text>
@@ -35,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SplashScreen;
+export default HomeScreen;

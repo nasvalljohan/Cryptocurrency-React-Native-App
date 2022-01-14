@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
-import CoinScreen from "./CoinScreen";
+import Boxes from "./Boxes";
 import { SAMPLE_DATA } from "./APIDATA";
 
-const ListData = ({ navigate }) => {
+const CoinListScreen = ({ navigate }) => {
   return (
     <View style={styles.container}>
       <View style={styles.bigbox}>
         <Text style={styles.bigtitle}>Select coin to convert</Text>
       </View>
 
-      <CoinScreen
+      <Boxes
         name={SAMPLE_DATA[0].name}
         symbol={SAMPLE_DATA[0].symbol}
         currentPrice={SAMPLE_DATA[0].current_price}
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListData;
+export default CoinListScreen;

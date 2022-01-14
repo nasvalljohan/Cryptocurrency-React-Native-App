@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const CoinScreen = ({
+const Boxes = ({
   navigation,
   name,
   symbol,
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     color: "lightgray",
   },
 });
-export default CoinScreen;
+export default Boxes;
