@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const Header = () => {
+const HeaderCoinListScreen = () => {
   return (
     <View style={styles.bigbox}>
-      <Text style={styles.bigtitle}>CryptXchange</Text>
+      <Text style={styles.bigtitle}>Select coin to convert</Text>
     </View>
   );
 };
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default HeaderCoinListScreen;

@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const Boxes = ({
-  navigation,
   name,
   symbol,
   currentPrice,

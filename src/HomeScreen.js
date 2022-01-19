@@ -5,11 +5,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <Text>Vill du känna dig trygg vid handel med cryptovaluta?</Text>
-        <Text>
-          asdfasdfa asfa sdf asdfasd fasfd asdfasdfasdf asdf asdf sdfa adsfasdf
-        </Text>
-        <Text>abcabcabc ad asfsadf asdfasdf asdfasfd asdfsadf asfdasdf</Text>
+        <Text>Rubrik</Text>
+        <Text>BRÖD BRÖD BRÖD</Text>
       </View>
       <Image
         source={{

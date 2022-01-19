@@ -1,10 +1,10 @@
-import ConvertScreen from "./src/ConvertScreen";
 import HomeScreen from "./src/HomeScreen";
 import CoinListScreen from "./src/CoinListScreen";
-import Header from "./src/Header";
+import HeaderHomeScreen from "./src/HeaderHomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
+import HeaderCoinListScreen from "./src/HeaderCoinListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,17 +15,12 @@ export default function App() {
         <Stack.Screen
           name="CRYPTX"
           component={HomeScreen}
-          options={{ headerTitle: () => <Header /> }}
+          options={{ headerTitle: () => <HeaderHomeScreen /> }}
         />
         <Stack.Screen
           name="CRYPTX COINS"
           component={CoinListScreen}
-          options={{ headerTitle: () => <Header /> }}
-        />
-        <Stack.Screen
-          name="CRYPTXCHANGE"
-          component={ConvertScreen}
-          options={{ headerTitle: () => <Header /> }}
+          options={{ headerTitle: () => <HeaderCoinListScreen /> }}
         />
       </Stack.Navigator>
     </NavigationContainer>
