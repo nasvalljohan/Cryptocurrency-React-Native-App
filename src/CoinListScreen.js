@@ -1,13 +1,24 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import Boxes from "./Boxes";
-import { SAMPLE_DATA } from "./APIDATA";
+import { useEffect, useState } from "react";
 
 const CoinListScreen = ({ navigate }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=SEK&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h%2C1h"
+    )
+      .then((response) => response.json())
+      .then((apiFetch) => setData(apiFetch))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
         keyExtractor={(item) => item.id}
-        data={SAMPLE_DATA}
+        data={data}
         renderItem={({ item }) => (
           <Boxes
             name={item.name}
