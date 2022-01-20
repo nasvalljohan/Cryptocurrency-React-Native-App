@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Modal from "react-native-modal";
 
 const Boxes = ({
   name,
@@ -8,8 +9,14 @@ const Boxes = ({
   priceChangePercentage,
   logoURL,
 }) => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const toggleSwitch = () => {
+    setModalShow(!modalShow);
+  };
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={toggleSwitch}>
       <View style={styles.box}>
         <View style={styles.leftbox}>
           <Image
@@ -28,6 +35,11 @@ const Boxes = ({
           <Text style={styles.title}>{currentPrice}</Text>
           <Text style={styles.subtitle}>{priceChangePercentage}</Text>
         </View>
+      </View>
+      <View>
+        <Modal isVisible={modalShow}>
+          <Text onPress={toggleSwitch}>{name}</Text>
+        </Modal>
       </View>
     </TouchableOpacity>
   );
