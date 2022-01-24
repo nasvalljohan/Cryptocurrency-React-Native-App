@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import Modal from "react-native-modal";
+import ModalBox from "./ModalBox";
 
 const Boxes = ({
   name,
@@ -11,12 +11,11 @@ const Boxes = ({
 }) => {
   const [modalShow, setModalShow] = useState(false);
 
-  const toggleSwitch = () => {
-    setModalShow(!modalShow);
+  const showModal = () => {
+    setModalShow((previousState) => !previousState);
   };
-
   return (
-    <TouchableOpacity onPress={toggleSwitch}>
+    <TouchableOpacity onPress={showModal}>
       <View style={styles.box}>
         <View style={styles.leftbox}>
           <Image
@@ -27,24 +26,30 @@ const Boxes = ({
           />
           <View style={styles.leftminibox}>
             <Text style={styles.title}>{name}</Text>
-            <Text style={styles.subtitle}>{symbol}</Text>
+            <Text style={styles.subtitle}>{symbol.toUpperCase()}</Text>
           </View>
         </View>
-
         <View style={styles.rightbox}>
-          <Text style={styles.title}>{currentPrice}</Text>
-          <Text style={styles.subtitle}>{priceChangePercentage}</Text>
+          <Text style={styles.title}>{currentPrice} SEK</Text>
+
+          <Text style={styles.subtitle}>
+            {priceChangePercentage.toFixed(3)}%
+          </Text>
         </View>
       </View>
-      <View>
-        <Modal isVisible={modalShow}>
-          <Text onPress={toggleSwitch}>{name}</Text>
-        </Modal>
-      </View>
+      {modalShow ? (
+        <ModalBox
+          name={name}
+          currentPrice={currentPrice}
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          symbol={symbol}
+        />
+      ) : null}
     </TouchableOpacity>
   );
 };
-
+// TODO Ändra färg på procent röd/grön
 const styles = StyleSheet.create({
   box: {
     paddingHorizontal: 16,
@@ -72,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: "lightgray",
+    color: "darkgrey",
   },
 });
 export default Boxes;

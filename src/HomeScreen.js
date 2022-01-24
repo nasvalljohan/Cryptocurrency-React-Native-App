@@ -4,15 +4,13 @@ import { View, Text, StyleSheet, Button, Image } from "react-native";
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.box}>
-        <Text>Rubrik</Text>
-        <Text>BRÖD BRÖD BRÖD</Text>
-      </View>
+      <View style={styles.box}></View>
       <Image
         source={{
           uri: "https://www.pngmart.com/files/17/Trade-PNG-File.png",
         }}
         style={styles.images}
+        onPress={() => navigation.navigate("CRYPTX COINS")}
       />
       <Button
         title="CoinScreen"
