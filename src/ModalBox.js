@@ -43,7 +43,7 @@ const ModalBox = ({
           onPressOut={() => setModalShow(!modalShow)}
         >
           <ScrollView
-            style={{ backgroundColor: "red", width: "100%" }}
+            style={{ backgroundColor: "red" }}
             keyboardShouldPersistTaps="always"
             onScroll={() => setModalShow(!modalShow)}
           >
