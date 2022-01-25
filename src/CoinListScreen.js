@@ -17,6 +17,7 @@ const CoinListScreen = ({ navigate }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        keyboardShouldPersistTaps={"always"}
         keyExtractor={(item) => item.id}
         data={data}
         renderItem={({ item }) => (
@@ -35,7 +36,7 @@ const CoinListScreen = ({ navigate }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
 });
 

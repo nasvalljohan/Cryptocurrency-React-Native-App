@@ -16,6 +16,15 @@ const Boxes = ({
   };
   return (
     <TouchableOpacity onPress={showModal}>
+      {modalShow ? (
+        <ModalBox
+          name={name}
+          currentPrice={currentPrice}
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          symbol={symbol}
+        />
+      ) : null}
       <View style={styles.box}>
         <View style={styles.leftbox}>
           <Image
@@ -37,15 +46,6 @@ const Boxes = ({
           </Text>
         </View>
       </View>
-      {modalShow ? (
-        <ModalBox
-          name={name}
-          currentPrice={currentPrice}
-          modalShow={modalShow}
-          setModalShow={setModalShow}
-          symbol={symbol}
-        />
-      ) : null}
     </TouchableOpacity>
   );
 };

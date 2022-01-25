@@ -5,9 +5,11 @@ import {
   StyleSheet,
   Switch,
   TextInput,
-  Button,
+  Modal,
+  ScrollView,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
-import Modal from "react-native-modal";
 
 const ModalBox = ({
   name,
@@ -20,73 +22,82 @@ const ModalBox = ({
 }) => {
   const [switchIsEnabled, setSwitchIsEnabled] = useState(true);
   const [input, setInput] = useState();
-  const hideModal = () => {
-    setModalShow((previousState) => !previousState);
-  };
+
   const currencyChange = () => {
     setSwitchIsEnabled((previousState) => !previousState);
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Modal isVisible={modalShow} animationIn={"slideInUp"}>
-        <View style={styles.modalbox}>
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={switchIsEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={currencyChange}
-            value={switchIsEnabled}
-          />
-          {switchIsEnabled ? (
-            <Text>Convert from SEK to {name}</Text>
-          ) : (
-            <Text>Convert from {name} to SEK</Text>
-          )}
-          <TextInput
-            placeholder="Enter amount"
-            keyboardType="numeric"
-            onChangeText={setInput}
-            //TODO value
-          />
+    <View>
+      <Modal
+        visible={modalShow}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => {
+          setModalShow(!modalShow);
+          console.log("android is backpedaling /GKICK!!");
+        }}
+      >
+        <TouchableOpacity
+          style={styles.container}
+          onPressOut={() => setModalShow(!modalShow)}
+        >
+          <ScrollView
+            keyboardShouldPersistTaps="always"
+            onScroll={() => setModalShow(!modalShow)}
+          >
+            <TouchableWithoutFeedback>
+              <View style={styles.modalbox}>
+                <Switch
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={switchIsEnabled ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={currencyChange}
+                  value={switchIsEnabled}
+                />
+                {switchIsEnabled ? (
+                  <Text>Convert from SEK to {name}</Text>
+                ) : (
+                  <Text>Convert from {name} to SEK</Text>
+                )}
+                <TextInput
+                  placeholder="Enter amount"
+                  keyboardType="numeric"
+                  onChangeText={setInput}
+                />
 
-          {switchIsEnabled ? (
-            <Text>
-              {input / currentPrice} {symbol.toUpperCase()}
-            </Text>
-          ) : (
-            <Text>{input * currentPrice} SEK </Text>
-          )}
-          <Text onPress={hideModal}>CLOSE</Text>
-        </View>
+                {switchIsEnabled ? (
+                  <Text>
+                    {input / currentPrice} {symbol.toUpperCase()}
+                  </Text>
+                ) : (
+                  <Text>{input * currentPrice} SEK </Text>
+                )}
+              </View>
+            </TouchableWithoutFeedback>
+          </ScrollView>
+        </TouchableOpacity>
       </Modal>
     </View>
 
-    // TODO TouchableWithoutFeedback wrappa och använd för att stänga
+    // TODO Fäst den i botten av skärmen, samt flytta med keyboardavoiding??
+    // TODO Modal väldigt liten, måste göras större.
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "green",
+  },
   modalbox: {
-    height: "60%",
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    backgroundColor: "grey",
   },
 });
 
