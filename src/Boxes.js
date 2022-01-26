@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import ModalBox from "./ModalBox";
 
 const Boxes = ({
   name,
@@ -13,7 +12,13 @@ const Boxes = ({
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate("Converter", { name, symbol, currentPrice })
+        navigation.navigate("Converter", {
+          name,
+          symbol,
+          currentPrice,
+          priceChangePercentage,
+          logoURL,
+        })
       }
     >
       <View style={styles.box}>
