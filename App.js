@@ -1,5 +1,6 @@
 import HomeScreen from "./src/HomeScreen";
 import CoinListScreen from "./src/CoinListScreen";
+import ConvertScreen from "./src/ConvertScreen";
 import HeaderHomeScreen from "./src/HeaderHomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -21,6 +22,12 @@ export default function App() {
           name="CRYPTX COINS"
           component={CoinListScreen}
           options={{ headerTitle: () => <HeaderCoinListScreen /> }}
+        />
+
+        <Stack.Screen
+          name="Converter"
+          component={ConvertScreen}
+          options={{ presentation: "modal" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

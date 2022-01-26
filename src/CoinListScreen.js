@@ -2,7 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import Boxes from "./Boxes";
 import { useEffect, useState } from "react";
 
-const CoinListScreen = ({ navigate }) => {
+const CoinListScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -27,6 +27,7 @@ const CoinListScreen = ({ navigate }) => {
             currentPrice={item.current_price}
             priceChangePercentage={item.price_change_percentage_24h}
             logoURL={item.image}
+            navigation={navigation}
           />
         )}
       />

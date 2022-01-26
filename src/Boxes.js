@@ -8,23 +8,14 @@ const Boxes = ({
   currentPrice,
   priceChangePercentage,
   logoURL,
+  navigation,
 }) => {
-  const [modalShow, setModalShow] = useState(false);
-
-  const showModal = () => {
-    setModalShow((previousState) => !previousState);
-  };
   return (
-    <TouchableOpacity onPress={showModal}>
-      {modalShow ? (
-        <ModalBox
-          name={name}
-          currentPrice={currentPrice}
-          modalShow={modalShow}
-          setModalShow={setModalShow}
-          symbol={symbol}
-        />
-      ) : null}
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate("Converter", { name, symbol, currentPrice })
+      }
+    >
       <View style={styles.box}>
         <View style={styles.leftbox}>
           <Image

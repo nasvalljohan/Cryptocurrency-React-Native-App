@@ -43,7 +43,6 @@ const ModalBox = ({
           onPressOut={() => setModalShow(!modalShow)}
         >
           <ScrollView
-            style={{ backgroundColor: "red" }}
             keyboardShouldPersistTaps="always"
             onScroll={() => setModalShow(!modalShow)}
           >
@@ -89,9 +88,6 @@ const ModalBox = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    backgroundColor: "green",
   },
   modalbox: {
     backgroundColor: "white",
