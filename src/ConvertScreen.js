@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import arrows from "../assets/arrows.png";
+import sweflag from "../assets/sweflag.png";
 import {
   View,
   Text,
@@ -22,6 +23,9 @@ const ConvertScreen = ({ route }) => {
     <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
       <View style={styles.container}>
         {/* ROW 1 - Boxes below */}
+        <View style={styles.convertxt}>
+          <Text>Covert From</Text>
+        </View>
         <View>
           <View style={styles.boxes}>
             {/*ROW 1 - Left box*/}
@@ -34,18 +38,20 @@ const ConvertScreen = ({ route }) => {
                   }}
                 >
                   <Image
-                    style={{ width: 30, height: 30, marginRight: 5 }}
+                    style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
                   <Text>{route.params.name}</Text>
                 </View>
               ) : (
-                <Text>SEK</Text>
+                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                  <Image source={sweflag} style={styles.image} />
+                  <Text>SEK</Text>
+                </View>
               )}
             </View>
             {/* ROW 1 - Right box */}
             <View style={styles.rightbox}>
-              <Text>Covert From</Text>
               <TextInput
                 placeholder="Enter amount"
                 keyboardType="numeric"
@@ -53,6 +59,7 @@ const ConvertScreen = ({ route }) => {
               />
             </View>
           </View>
+
           {/* ROW 1 - CODE END */}
           <View style={styles.topdivder} />
         </View>
@@ -73,11 +80,14 @@ const ConvertScreen = ({ route }) => {
             {/* ROW 2 - Left box*/}
             <View style={styles.leftbox}>
               {switchIsEnabled ? (
-                <Text>SEK</Text>
+                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                  <Image source={sweflag} style={styles.image} />
+                  <Text>SEK</Text>
+                </View>
               ) : (
                 <View style={{ alignItems: "center", flexDirection: "row" }}>
                   <Image
-                    style={{ width: 30, height: 30, margin: 5 }}
+                    style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
                   <Text>{route.params.name}</Text>
@@ -86,7 +96,6 @@ const ConvertScreen = ({ route }) => {
             </View>
             {/*ROW 2 - Right box*/}
             <View style={styles.rightbox}>
-              <Text>Convert To</Text>
               {switchIsEnabled ? (
                 <Text>{input * route.params.currentPrice} SEK</Text>
               ) : (
@@ -108,7 +117,7 @@ const ConvertScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: 30,
   },
   boxes: {
     paddingHorizontal: 16,
@@ -119,18 +128,19 @@ const styles = StyleSheet.create({
   leftbox: {
     backgroundColor: "white",
     width: 130,
-    height: 65,
+    height: 55,
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
     borderRadius: 3,
   },
   rightbox: {
     padding: 4,
     width: 220,
-    height: 65,
+    height: 55,
     backgroundColor: "lightgrey",
     flexDirection: "column",
+    justifyContent: "center",
   },
   topdivder: {
     width: "92%",
@@ -152,6 +162,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     marginLeft: 25,
+  },
+  image: {
+    width: 30,
+    height: 30,
+    margin: 5,
+  },
+  convertxt: {
+    paddingLeft: 160,
+    paddingBottom: 10,
   },
 });
 
