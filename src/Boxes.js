@@ -38,7 +38,7 @@ const Boxes = ({
           <Text style={styles.title}>{currentPrice} SEK</Text>
 
           <Text style={styles.subtitle}>
-            {priceChangePercentage.toFixed(3)}%
+            {priceChangePercentage.toFixed(2)}%
           </Text>
         </View>
       </View>

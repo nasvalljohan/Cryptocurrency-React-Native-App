@@ -1,20 +1,16 @@
 import React, { useState } from "react";
+import arrows from "../assets/arrows.png";
 import {
   View,
   Text,
   StyleSheet,
-  Switch,
   TextInput,
   ScrollView,
   Image,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 const ConvertScreen = ({ route }) => {
-  /*console.log(route.params.name);
-  console.log(route.params.symbol);
-  console.log(route.params.currentPrice);
-  console.log(route.params.priceChangePercentage);
-  console.log(route.params.logoURL); */
   const [switchIsEnabled, setSwitchIsEnabled] = useState(true);
   const [input, setInput] = useState();
 
@@ -25,41 +21,77 @@ const ConvertScreen = ({ route }) => {
   return (
     <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
       <View style={styles.container}>
-        <View style={{ justifyContent: "space-around" }}>
+        <View>
           <View style={styles.boxes}>
             <View style={styles.leftbox}>
-              <Text>Currency</Text>
+              {switchIsEnabled ? (
+                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                  <Image
+                    style={{ width: 30, height: 30 }}
+                    source={{ uri: route.params.logoURL }}
+                  />
+                  <Text>{route.params.name}</Text>
+                </View>
+              ) : (
+                <Text>SEK</Text>
+              )}
             </View>
 
             <View style={styles.rightbox}>
               <Text>Covert From</Text>
+              <TextInput
+                placeholder="Enter amount"
+                keyboardType="numeric"
+                onChangeText={setInput}
+              />
             </View>
           </View>
-          <View style={styles.divider1} />
+          <View style={styles.topdivder} />
         </View>
         <View style={styles.imgbox}>
-          <Image
-            style={{ width: 40, height: 40 }}
-            source={{
-              uri: "https://cdn1.iconfinder.com/data/icons/material-set-6/48/598-512.png",
-            }}
-          />
+          <TouchableWithoutFeedback onPress={currencyChange}>
+            <Image style={{ width: 40, height: 40 }} source={arrows} />
+          </TouchableWithoutFeedback>
+          <Text>
+            Current price: 1 {route.params.symbol.toUpperCase()} ={" "}
+            {route.params.currentPrice}
+          </Text>
         </View>
 
-        <View style={{ justifyContent: "space-around" }}>
-          <View style={styles.divider2} />
+        <View>
+          <View style={styles.botdivider} />
           <View style={styles.boxes}>
             <View style={styles.leftbox}>
-              <Text>Currency</Text>
+              {switchIsEnabled ? (
+                <Text>SEK</Text>
+              ) : (
+                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                  <Image
+                    style={{ width: 30, height: 30 }}
+                    source={{ uri: route.params.logoURL }}
+                  />
+                  <Text>{route.params.name}</Text>
+                </View>
+              )}
             </View>
 
             <View style={styles.rightbox}>
               <Text>Convert To</Text>
+              {switchIsEnabled ? (
+                <Text>{input * route.params.currentPrice} SEK</Text>
+              ) : (
+                <Text>
+                  {input / route.params.currentPrice}{" "}
+                  {route.params.symbol.toUpperCase()}{" "}
+                </Text>
+              )}
             </View>
           </View>
         </View>
       </View>
     </ScrollView>
+
+    //TODO, lägg in info om coin nedanför.
   );
 };
 
@@ -72,7 +104,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "yellow",
   },
   leftbox: {
     backgroundColor: "white",
@@ -90,64 +121,27 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey",
     flexDirection: "column",
   },
-  divider1: {
+  topdivder: {
+    width: "92%",
     marginTop: 15,
-    paddingHorizontal: 16,
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "grey",
+    alignSelf: "center",
   },
-  divider2: {
+  botdivider: {
+    width: "92%",
     marginBottom: 15,
-    paddingHorizontal: 16,
     height: 1,
-    backgroundColor: "red",
+    backgroundColor: "grey",
+    alignSelf: "center",
   },
   imgbox: {
     flexDirection: "column",
     alignItems: "flex-start",
     justifyContent: "center",
-
     margin: 10,
     marginLeft: 60,
   },
 });
 
 export default ConvertScreen;
-
-{
-  /* 
-
-      <View style={styles.container}>
-        <View>
-          {switchIsEnabled ? (
-            <Text>Convert from SEK to {route.params.name}</Text>
-          ) : (
-            <Text>Convert from {route.params.name} to SEK</Text>
-          )}
-          <TextInput
-            placeholder="Enter amount"
-            keyboardType="numeric"
-            onChangeText={setInput}
-          />
-
-          {switchIsEnabled ? (
-            <Text>
-              {input / route.params.currentPrice}{" "}
-              {route.params.symbol.toUpperCase()}
-            </Text>
-          ) : (
-            <Text>{input * route.params.currentPrice} SEK </Text>
-          )}
-        </View>
-        <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={switchIsEnabled ? "#f5dd4b" : "#f4f3f4"}
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={currencyChange}
-          value={switchIsEnabled}
-        />
-      </View>
-
-
-*/
-}
