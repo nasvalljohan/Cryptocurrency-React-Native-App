@@ -6,6 +6,7 @@ import {
   Switch,
   TextInput,
   ScrollView,
+  Image,
 } from "react-native";
 
 const ConvertScreen = ({ route }) => {
@@ -22,8 +23,101 @@ const ConvertScreen = ({ route }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
+    <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
+      <View style={styles.container}>
+        <View style={{ justifyContent: "space-around" }}>
+          <View style={styles.boxes}>
+            <View style={styles.leftbox}>
+              <Text>Currency</Text>
+            </View>
+
+            <View style={styles.rightbox}>
+              <Text>Covert From</Text>
+            </View>
+          </View>
+          <View style={styles.divider1} />
+        </View>
+        <View style={styles.imgbox}>
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={{
+              uri: "https://cdn1.iconfinder.com/data/icons/material-set-6/48/598-512.png",
+            }}
+          />
+        </View>
+
+        <View style={{ justifyContent: "space-around" }}>
+          <View style={styles.divider2} />
+          <View style={styles.boxes}>
+            <View style={styles.leftbox}>
+              <Text>Currency</Text>
+            </View>
+
+            <View style={styles.rightbox}>
+              <Text>Convert To</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 40,
+  },
+  boxes: {
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "yellow",
+  },
+  leftbox: {
+    backgroundColor: "white",
+    width: 130,
+    height: 65,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 3,
+  },
+  rightbox: {
+    padding: 4,
+    width: 220,
+    height: 65,
+    backgroundColor: "lightgrey",
+    flexDirection: "column",
+  },
+  divider1: {
+    marginTop: 15,
+    paddingHorizontal: 16,
+    height: 1,
+    backgroundColor: "black",
+  },
+  divider2: {
+    marginBottom: 15,
+    paddingHorizontal: 16,
+    height: 1,
+    backgroundColor: "red",
+  },
+  imgbox: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "center",
+
+    margin: 10,
+    marginLeft: 60,
+  },
+});
+
+export default ConvertScreen;
+
+{
+  /* 
+
+      <View style={styles.container}>
         <View>
           {switchIsEnabled ? (
             <Text>Convert from SEK to {route.params.name}</Text>
@@ -52,17 +146,8 @@ const ConvertScreen = ({ route }) => {
           onValueChange={currencyChange}
           value={switchIsEnabled}
         />
-      </ScrollView>
-    </View>
-  );
-};
+      </View>
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-  },
-});
 
-export default ConvertScreen;
+*/
+}
