@@ -21,13 +21,20 @@ const ConvertScreen = ({ route }) => {
   return (
     <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
       <View style={styles.container}>
+        {/* ROW 1 - Boxes below */}
         <View>
           <View style={styles.boxes}>
+            {/*ROW 1 - Left box*/}
             <View style={styles.leftbox}>
               {switchIsEnabled ? (
-                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                <View
+                  style={{
+                    alignItems: "center",
+                    flexDirection: "row",
+                  }}
+                >
                   <Image
-                    style={{ width: 30, height: 30 }}
+                    style={{ width: 30, height: 30, marginRight: 5 }}
                     source={{ uri: route.params.logoURL }}
                   />
                   <Text>{route.params.name}</Text>
@@ -36,7 +43,7 @@ const ConvertScreen = ({ route }) => {
                 <Text>SEK</Text>
               )}
             </View>
-
+            {/* ROW 1 - Right box */}
             <View style={styles.rightbox}>
               <Text>Covert From</Text>
               <TextInput
@@ -46,35 +53,38 @@ const ConvertScreen = ({ route }) => {
               />
             </View>
           </View>
+          {/* ROW 1 - CODE END */}
           <View style={styles.topdivder} />
         </View>
+        {/* Swap-arrow & current price below */}
         <View style={styles.imgbox}>
           <TouchableWithoutFeedback onPress={currencyChange}>
             <Image style={{ width: 40, height: 40 }} source={arrows} />
           </TouchableWithoutFeedback>
           <Text>
             Current price: 1 {route.params.symbol.toUpperCase()} ={" "}
-            {route.params.currentPrice}
+            {route.params.currentPrice} SEK
           </Text>
         </View>
-
+        {/* ROW 2 - Boxes below */}
         <View>
           <View style={styles.botdivider} />
           <View style={styles.boxes}>
+            {/* ROW 2 - Left box*/}
             <View style={styles.leftbox}>
               {switchIsEnabled ? (
                 <Text>SEK</Text>
               ) : (
                 <View style={{ alignItems: "center", flexDirection: "row" }}>
                   <Image
-                    style={{ width: 30, height: 30 }}
+                    style={{ width: 30, height: 30, margin: 5 }}
                     source={{ uri: route.params.logoURL }}
                   />
                   <Text>{route.params.name}</Text>
                 </View>
               )}
             </View>
-
+            {/*ROW 2 - Right box*/}
             <View style={styles.rightbox}>
               <Text>Convert To</Text>
               {switchIsEnabled ? (
@@ -88,6 +98,7 @@ const ConvertScreen = ({ route }) => {
             </View>
           </View>
         </View>
+        {/* ROW 2 - CODE END */}
       </View>
     </ScrollView>
 
@@ -136,11 +147,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   imgbox: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-    justifyContent: "center",
     margin: 10,
-    marginLeft: 60,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    marginLeft: 25,
   },
 });
 
