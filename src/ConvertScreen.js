@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import arrows from "../assets/arrows.png";
 import sweflag from "../assets/sweflag.png";
+import updown from "../assets/lottie/updown.json";
+import downup from "../assets/lottie/downup.json";
+import LottieView from "lottie-react-native";
+import AndroidHeaderConvertScreen from "./AndroidHeaderConvertScreen";
 import {
   View,
   Text,
@@ -18,9 +21,32 @@ const ConvertScreen = ({ route }) => {
   const currencyChange = () => {
     setSwitchIsEnabled((previousState) => !previousState);
   };
+  const animationdown = React.useRef(null);
+  const firstRun = React.useRef(true);
+  const animationup = React.useRef(null);
+
+  React.useEffect(() => {
+    if (firstRun.current) {
+      if (!switchIsEnabled) {
+        animationdown.current.play(0, 0);
+        animationup.current.play(18, 18);
+      } else {
+        animationdown.current.play(18, 18);
+        animationup.current.play(0, 0);
+      }
+      firstRun.current = false;
+    } else if (switchIsEnabled) {
+      animationup.current.play(18, 0);
+      animationdown.current.play(0, 18);
+    } else {
+      animationup.current.play(0, 18);
+      animationdown.current.play(18, 0);
+    }
+  }, [switchIsEnabled]);
 
   return (
     <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={false}>
+      {Platform.OS === "android" ? <AndroidHeaderConvertScreen /> : null}
       <View style={styles.container}>
         {/* ROW 1 - Boxes below */}
         <View style={styles.convertxt}>
@@ -41,7 +67,9 @@ const ConvertScreen = ({ route }) => {
                     style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
-                  <Text>{route.params.name}</Text>
+                  <Text style={{ flex: 1, flexWrap: "wrap" }}>
+                    {route.params.name}
+                  </Text>
                 </View>
               ) : (
                 <View style={{ alignItems: "center", flexDirection: "row" }}>
@@ -66,7 +94,41 @@ const ConvertScreen = ({ route }) => {
         {/* Swap-arrow & current price below */}
         <View style={styles.imgbox}>
           <TouchableWithoutFeedback onPress={currencyChange}>
-            <Image style={{ width: 40, height: 40 }} source={arrows} />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                width: 36,
+                height: 40,
+                marginBottom: 15,
+              }}
+            >
+              <LottieView
+                ref={animationdown}
+                style={{
+                  width: 20,
+                  height: 40,
+                  marginHorizontal: -2,
+                }}
+                source={updown}
+                autoPlay={false}
+                loop={false}
+                speed={3}
+              />
+              <LottieView
+                ref={animationup}
+                style={{
+                  width: 20,
+                  height: 40,
+                  marginHorizontal: -2,
+                }}
+                source={downup}
+                autoPlay={false}
+                loop={false}
+                speed={3}
+              />
+            </View>
           </TouchableWithoutFeedback>
           <Text>
             Current price: 1 {route.params.symbol.toUpperCase()} ={" "}
@@ -90,7 +152,9 @@ const ConvertScreen = ({ route }) => {
                     style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
-                  <Text>{route.params.name}</Text>
+                  <Text style={{ flex: 1, flexWrap: "wrap" }}>
+                    {route.params.name}
+                  </Text>
                 </View>
               )}
             </View>
@@ -138,7 +202,7 @@ const styles = StyleSheet.create({
     padding: 4,
     width: 220,
     height: 55,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#ebebeb",
     flexDirection: "column",
     justifyContent: "center",
   },
@@ -157,11 +221,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   imgbox: {
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    marginLeft: 25,
   },
   image: {
     width: 30,
@@ -171,6 +235,19 @@ const styles = StyleSheet.create({
   convertxt: {
     paddingLeft: 160,
     paddingBottom: 10,
+  },
+  androidHeader: {
+    alignItems: "center",
+    height: 70,
+    borderWidth: 0.2,
+    backgroundColor: "white",
+    borderBottomColor: "#fce0de",
+  },
+  bigtitle: {
+    marginTop: 30,
+    flex: 1,
+    fontSize: 24,
+    fontWeight: "700",
   },
 });
 

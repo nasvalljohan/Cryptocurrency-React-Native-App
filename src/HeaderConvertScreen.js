@@ -1,10 +1,10 @@
-import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import React from "react";
 
-const HeaderHomeScreen = () => {
+const HeaderConvertModal = () => {
   return (
     <View style={styles.bigbox}>
-      <Text style={styles.bigtitle}>CryptXchange</Text>
+      <Text style={styles.bigtitle}>Convert</Text>
     </View>
   );
 };
@@ -19,5 +19,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 });
-
-export default HeaderHomeScreen;
+export default HeaderConvertModal;

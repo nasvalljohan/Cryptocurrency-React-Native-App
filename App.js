@@ -1,10 +1,10 @@
 import HomeScreen from "./src/HomeScreen";
 import CoinListScreen from "./src/CoinListScreen";
 import ConvertScreen from "./src/ConvertScreen";
-import HeaderHomeScreen from "./src/HeaderHomeScreen";
+import HeaderConvertScreen from "./src/HeaderConvertScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import HeaderCoinListScreen from "./src/HeaderCoinListScreen";
 
 const Stack = createNativeStackNavigator();
@@ -16,18 +16,29 @@ export default function App() {
         <Stack.Screen
           name="CRYPTX"
           component={HomeScreen}
-          options={{ headerTitle: () => <HeaderHomeScreen /> }}
+          options={{
+            headerShown: false,
+          }}
         />
+        {/* Ingen header visas om det är andoid, header separat i varje komponent för android */}
         <Stack.Screen
           name="CRYPTX COINS"
           component={CoinListScreen}
-          options={{ headerTitle: () => <HeaderCoinListScreen /> }}
+          options={{
+            headerShown: Platform.OS === "ios" ? true : false,
+            headerTitle: () =>
+              Platform.OS === "ios" ? <HeaderCoinListScreen /> : null,
+          }}
         />
-
         <Stack.Screen
           name="Converter"
           component={ConvertScreen}
-          options={{ presentation: "modal" }}
+          options={{
+            presentation: "modal",
+            headerShown: Platform.OS === "ios" ? true : false,
+            headerTitle: () =>
+              Platform.OS === "android" ? <HeaderConvertScreen /> : null,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

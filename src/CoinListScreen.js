@@ -1,5 +1,13 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native";
 import Boxes from "./Boxes";
+import AndroidHeaderCoinListScreen from "./AndroidHeaderCoinListScreen";
 import { useEffect, useState } from "react";
 
 const CoinListScreen = ({ navigation }) => {
@@ -16,11 +24,12 @@ const CoinListScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {Platform.OS === "android" ? <AndroidHeaderCoinListScreen /> : null}
       <FlatList
         keyboardShouldPersistTaps={"always"}
         keyExtractor={(item) => item.id}
         data={data}
-        renderItem={({ item }) => (
+        renderItem={({ item, separators }) => (
           <Boxes
             name={item.name}
             symbol={item.symbol}
@@ -38,6 +47,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  androidHeader: {
+    alignItems: "center",
+    height: 70,
+    borderWidth: 0.2,
+    borderBottomColor: "#fce0de",
+  },
+  bigtitle: {
+    marginTop: 30,
+    flex: 1,
+    fontSize: 24,
+    fontWeight: "700",
   },
 });
 

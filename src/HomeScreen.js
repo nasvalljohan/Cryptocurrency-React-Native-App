@@ -1,38 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import LottieView from "lottie-react-native";
+import Splash from "../assets/lottie/Splash.json";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.box}></View>
-      <Image
-        source={{
-          uri: "https://www.pngmart.com/files/17/Trade-PNG-File.png",
-        }}
-        style={styles.images}
-        onPress={() => navigation.navigate("CRYPTX COINS")}
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("CRYPTX COINS")}
+    >
+      <LottieView
+        source={Splash}
+        autoPlay={true}
+        loop={false}
+        onAnimationFinish={() => navigation.navigate("CRYPTX COINS")}
       />
-      <Button
-        title="CoinScreen"
-        onPress={() => navigation.navigate("CRYPTX COINS")}
-      />
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    marginTop: 24,
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  box: {
-    alignItems: "flex-start",
-  },
-  images: {
-    width: 100,
-    height: 100,
   },
 });
 

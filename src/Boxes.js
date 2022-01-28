@@ -9,6 +9,7 @@ const Boxes = ({
   logoURL,
   navigation,
 }) => {
+  const percentageColor = priceChangePercentage > 0 ? "green" : "red";
   return (
     <TouchableOpacity
       onPress={() =>
@@ -37,7 +38,7 @@ const Boxes = ({
         <View style={styles.rightbox}>
           <Text style={styles.title}>{currentPrice} SEK</Text>
 
-          <Text style={styles.subtitle}>
+          <Text style={(styles.subtitle, { color: percentageColor })}>
             {priceChangePercentage.toFixed(2)}%
           </Text>
         </View>
@@ -73,7 +74,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: "darkgrey",
   },
 });
 export default Boxes;
