@@ -4,7 +4,7 @@ import React from "react";
 const AndroidHeaderConvertScreen = () => {
   return (
     <View style={styles.androidHeader}>
-      <Text style={styles.bigtitle}>Select coin to convert</Text>
+      <Text style={styles.bigtitle}>Converter</Text>
     </View>
   );
 };

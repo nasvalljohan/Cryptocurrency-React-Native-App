@@ -1,4 +1,4 @@
-import HomeScreen from "./src/HomeScreen";
+import SplashScreen from "./src/SplashScreen";
 import CoinListScreen from "./src/CoinListScreen";
 import ConvertScreen from "./src/ConvertScreen";
 import HeaderConvertScreen from "./src/HeaderConvertScreen";
@@ -15,7 +15,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="CryptX">
         <Stack.Screen
           name="CRYPTX"
-          component={HomeScreen}
+          component={SplashScreen}
           options={{
             headerShown: false,
           }}
@@ -25,9 +25,9 @@ export default function App() {
           name="CRYPTX COINS"
           component={CoinListScreen}
           options={{
-            headerShown: Platform.OS === "ios" ? true : false,
+            headerShown: Platform.OS === "android" ? false : true,
             headerTitle: () =>
-              Platform.OS === "ios" ? <HeaderCoinListScreen /> : null,
+              Platform.OS === "android" ? <HeaderCoinListScreen /> : null,
           }}
         />
         <Stack.Screen
@@ -35,7 +35,7 @@ export default function App() {
           component={ConvertScreen}
           options={{
             presentation: "modal",
-            headerShown: Platform.OS === "ios" ? true : false,
+            headerShown: Platform.OS === "android" ? false : true,
             headerTitle: () =>
               Platform.OS === "android" ? <HeaderConvertScreen /> : null,
           }}
