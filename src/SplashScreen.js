@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, TouchableWithoutFeedback } from "react-native";
 import LottieView from "lottie-react-native";
 import Splash from "../assets/lottie/Splash.json";
