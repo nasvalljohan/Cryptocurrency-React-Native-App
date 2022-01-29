@@ -248,6 +248,7 @@ const styles = StyleSheet.create({
     marginHorizontal: -2,
   },
   leftboxcontentalign: {
+    paddingRight: 2,
     alignItems: "center",
     flexDirection: "row",
   },
