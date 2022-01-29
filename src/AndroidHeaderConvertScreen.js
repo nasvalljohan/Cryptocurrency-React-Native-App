@@ -12,15 +12,14 @@ const styles = StyleSheet.create({
   androidHeader: {
     alignItems: "center",
     height: 70,
-    borderWidth: 0.2,
     backgroundColor: "white",
-    borderBottomColor: "#fce0de",
   },
   bigtitle: {
     marginTop: 30,
     flex: 1,
-    fontSize: 24,
-    fontWeight: "700",
+    fontSize: 23,
+    fontWeight: "600",
+    color: "#472A60",
   },
 });
 export default AndroidHeaderConvertScreen;

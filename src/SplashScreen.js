@@ -14,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
         autoPlay={true}
         loop={false}
         onAnimationFinish={() => navigation.navigate("CRYPTX COINS")}
-        speed={0.7}
+        speed={1}
       />
     </TouchableWithoutFeedback>
   );

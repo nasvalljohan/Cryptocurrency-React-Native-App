@@ -50,31 +50,24 @@ const ConvertScreen = ({ route }) => {
       <View style={styles.container}>
         {/* ROW 1 - Boxes below */}
         <View style={styles.convertxt}>
-          <Text>Covert From</Text>
+          <Text style={styles.opacitytext}>Covert From</Text>
         </View>
         <View>
           <View style={styles.boxes}>
             {/*ROW 1 - Left box*/}
             <View style={styles.leftbox}>
               {switchIsEnabled ? (
-                <View
-                  style={{
-                    alignItems: "center",
-                    flexDirection: "row",
-                  }}
-                >
+                <View style={styles.leftboxcontentalign}>
                   <Image
                     style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
-                  <Text style={{ flex: 1, flexWrap: "wrap" }}>
-                    {route.params.name}
-                  </Text>
+                  <Text style={styles.leftboxtext}>{route.params.name}</Text>
                 </View>
               ) : (
-                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                <View style={styles.leftboxcontentalign}>
                   <Image source={sweflag} style={styles.image} />
-                  <Text>SEK</Text>
+                  <Text style={styles.leftboxtext}>SEK</Text>
                 </View>
               )}
             </View>
@@ -94,23 +87,10 @@ const ConvertScreen = ({ route }) => {
         {/* Swap-arrow & current price below */}
         <View style={styles.imgbox}>
           <TouchableWithoutFeedback onPress={currencyChange}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                width: 36,
-                height: 40,
-                marginBottom: 15,
-              }}
-            >
+            <View style={styles.lottiebox}>
               <LottieView
                 ref={animationdown}
-                style={{
-                  width: 20,
-                  height: 40,
-                  marginHorizontal: -2,
-                }}
+                style={styles.lottieanimation}
                 source={updown}
                 autoPlay={false}
                 loop={false}
@@ -118,11 +98,7 @@ const ConvertScreen = ({ route }) => {
               />
               <LottieView
                 ref={animationup}
-                style={{
-                  width: 20,
-                  height: 40,
-                  marginHorizontal: -2,
-                }}
+                style={styles.lottieanimation}
                 source={downup}
                 autoPlay={false}
                 loop={false}
@@ -130,9 +106,9 @@ const ConvertScreen = ({ route }) => {
               />
             </View>
           </TouchableWithoutFeedback>
-          <Text>
-            Current price: 1 {route.params.symbol.toUpperCase()} ={" "}
-            {route.params.currentPrice} SEK
+          <Text style={styles.opacitytext}>
+            1 {route.params.symbol.toUpperCase()} = {route.params.currentPrice}{" "}
+            SEK
           </Text>
         </View>
         {/* ROW 2 - Boxes below */}
@@ -142,19 +118,17 @@ const ConvertScreen = ({ route }) => {
             {/* ROW 2 - Left box*/}
             <View style={styles.leftbox}>
               {switchIsEnabled ? (
-                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                <View style={styles.leftboxcontentalign}>
                   <Image source={sweflag} style={styles.image} />
-                  <Text>SEK</Text>
+                  <Text style={styles.leftboxtext}>SEK</Text>
                 </View>
               ) : (
-                <View style={{ alignItems: "center", flexDirection: "row" }}>
+                <View style={styles.leftboxcontentalign}>
                   <Image
                     style={styles.image}
                     source={{ uri: route.params.logoURL }}
                   />
-                  <Text style={{ flex: 1, flexWrap: "wrap" }}>
-                    {route.params.name}
-                  </Text>
+                  <Text style={styles.leftboxtext}>{route.params.name}</Text>
                 </View>
               )}
             </View>
@@ -174,8 +148,6 @@ const ConvertScreen = ({ route }) => {
         {/* ROW 2 - CODE END */}
       </View>
     </ScrollView>
-
-    //TODO, lägg in info om coin nedanför.
   );
 };
 
@@ -225,7 +197,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
+    position: "relative",
   },
   image: {
     width: 30,
@@ -233,8 +206,8 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   convertxt: {
-    paddingLeft: 160,
-    paddingBottom: 10,
+    paddingLeft: 25,
+    paddingBottom: 6,
   },
   androidHeader: {
     alignItems: "center",
@@ -248,6 +221,35 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 24,
     fontWeight: "700",
+  },
+  leftboxtext: {
+    flex: 1,
+    flexWrap: "wrap",
+    fontWeight: "bold",
+    fontSize: 14,
+  },
+  opacitytext: {
+    opacity: 0.5,
+    fontWeight: "500",
+    fontSize: 13,
+  },
+  lottiebox: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 36,
+    height: 40,
+    marginBottom: 15,
+  },
+
+  lottieanimation: {
+    width: 20,
+    height: 40,
+    marginHorizontal: -2,
+  },
+  leftboxcontentalign: {
+    alignItems: "center",
+    flexDirection: "row",
   },
 });
 

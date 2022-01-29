@@ -1,11 +1,14 @@
 CSS TEXT:
-1. Ändra text och färg på headers 
+1. Ändra text och färg på headers  DONE
 Text: {#472A60} - Eventuell bakgrund: {#03D5B3 / #258089}
-    A. AndroidHeaderCoinListScreen
-    B. HeaderCoinListScreen
-    C. AndroidHeaderConvertScreen
-    D. HeaderConvertSCreen
+    A. AndroidHeaderCoinListScreen DONE
+    B. HeaderCoinListScreen DONE
+    C. AndroidHeaderConvertScreen DONE
+    D. HeaderConvertSCreen DONE 
 
-2. Ändra text i ConvertScreen
+2. Ändra text i ConvertScreen DONE
+3. Formattera svenska flaggan, laddar långsamt. Gick inte genom enkel formattering. 
+4. onanimationend splashscreen render "about"?
+5. Kolla på redux, om det går att implementera. 
 
 

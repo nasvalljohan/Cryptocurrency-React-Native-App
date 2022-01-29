@@ -27,7 +27,7 @@ export default function App() {
           options={{
             headerShown: Platform.OS === "android" ? false : true,
             headerTitle: () =>
-              Platform.OS === "android" ? <HeaderCoinListScreen /> : null,
+              Platform.OS === "ios" ? <HeaderCoinListScreen /> : null,
           }}
         />
         <Stack.Screen
@@ -37,7 +37,7 @@ export default function App() {
             presentation: "modal",
             headerShown: Platform.OS === "android" ? false : true,
             headerTitle: () =>
-              Platform.OS === "android" ? <HeaderConvertScreen /> : null,
+              Platform.OS === "ios" ? <HeaderConvertScreen /> : null,
           }}
         />
       </Stack.Navigator>

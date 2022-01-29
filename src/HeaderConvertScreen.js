@@ -12,8 +12,9 @@ const HeaderConvertModal = () => {
 const styles = StyleSheet.create({
   bigtitle: {
     flex: 1,
-    fontSize: 24,
-    fontWeight: "700",
+    fontSize: 23,
+    fontWeight: "500",
+    color: "#472A60",
   },
   bigbox: {
     paddingHorizontal: 16,
