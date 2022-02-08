@@ -16,26 +16,29 @@ import {
 
 const ConvertScreen = ({ route }) => {
   const [switchIsEnabled, setSwitchIsEnabled] = useState(true);
-  const [input, setInput] = useState();
+  const [input, setInput] = useState(0);
 
   const currencyChange = () => {
-    setSwitchIsEnabled((previousState) => !previousState);
+    setSwitchIsEnabled(!switchIsEnabled);
   };
+
+  //Animationdown/up ref in lottieview
   const animationdown = useRef(null);
-  const firstRun = useRef(true);
   const animationup = useRef(null);
+  const firstRun = useRef(true);
 
   useEffect(() => {
     if (firstRun.current) {
-      if (!switchIsEnabled) {
+      //Static startingposition, firstrun=false after
+      if (switchIsEnabled) {
         animationdown.current.play(0, 0);
         animationup.current.play(18, 18);
       } else {
-        animationdown.current.play(18, 18);
-        animationup.current.play(0, 0);
+        null;
       }
       firstRun.current = false;
-    } else if (switchIsEnabled) {
+      //Everytime switch(r95) is pressed, arrows swap up/down
+    } else if (!switchIsEnabled) {
       animationup.current.play(18, 0);
       animationdown.current.play(0, 18);
     } else {
@@ -56,6 +59,7 @@ const ConvertScreen = ({ route }) => {
           <View style={styles.boxes}>
             {/*ROW 1 - Left box*/}
             <View style={styles.leftbox}>
+              {/*Swapping places if switch is pressed*/}
               {switchIsEnabled ? (
                 <View style={styles.leftboxcontentalign}>
                   <Image
@@ -74,6 +78,7 @@ const ConvertScreen = ({ route }) => {
             {/* ROW 1 - Right box */}
             <View style={styles.rightbox}>
               <TextInput
+                autoFocus={true}
                 placeholder="Enter amount"
                 keyboardType="numeric"
                 onChangeText={setInput}
@@ -117,6 +122,7 @@ const ConvertScreen = ({ route }) => {
           <View style={styles.boxes}>
             {/* ROW 2 - Left box*/}
             <View style={styles.leftbox}>
+              {/*Swapping places if switch is pressed*/}
               {switchIsEnabled ? (
                 <View style={styles.leftboxcontentalign}>
                   <Image source={sweflag} style={styles.image} />
@@ -139,7 +145,7 @@ const ConvertScreen = ({ route }) => {
               ) : (
                 <Text>
                   {input / route.params.currentPrice}{" "}
-                  {route.params.symbol.toUpperCase()}{" "}
+                  {route.params.symbol.toUpperCase()}
                 </Text>
               )}
             </View>
