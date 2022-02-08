@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import sweflag from "../assets/sweflag.png";
 import updown from "../assets/lottie/updown.json";
 import downup from "../assets/lottie/downup.json";
@@ -21,11 +21,11 @@ const ConvertScreen = ({ route }) => {
   const currencyChange = () => {
     setSwitchIsEnabled((previousState) => !previousState);
   };
-  const animationdown = React.useRef(null);
-  const firstRun = React.useRef(true);
-  const animationup = React.useRef(null);
+  const animationdown = useRef(null);
+  const firstRun = useRef(true);
+  const animationup = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (firstRun.current) {
       if (!switchIsEnabled) {
         animationdown.current.play(0, 0);
